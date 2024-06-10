@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container col-lg-6">
+  <div class="row">
+    {% for inm in inmuebles %}
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="card h-100"> 
+          <img src="media/{{ inm.imagen }}" class="card-img-top img-fluid" style="max-width: 300px;" alt="card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ inm.descripcion }}</h5>
+            <p class="card-text">Precio: ${{ inm.precio }}</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Habitaciones: {{ inm.cantidad_habitaciones }}</li>
+              <li class="list-group-item">Baños: {{ inm.cantidad_banos }}</li>
+              <li class="list-group-item">Área: {{ inm.m2_construidos }} m2</li>
+              <li class="list-group-item">Estacionamientos: {{ inm.cantidad_estacionamientos }}</li>
+            </ul>
+            <form action="{% url 'detalle' inm.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">Ver Detalles</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

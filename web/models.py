@@ -29,7 +29,7 @@ class Usuario(AbstractUser):
     correo_electronico = models.EmailField(unique=True, default='email@correo.cl')
     
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
+        return f"{self.nombres} {self.apellidos}"
     
 
 class Inmueble(models.Model):
@@ -40,7 +40,7 @@ class Inmueble(models.Model):
     ]
     nombre = models.CharField(max_length=50)
     direccion = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=250)
     imagen = models.ImageField(upload_to='', null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=0)
     comuna = models.ForeignKey(Comuna, related_name='inmuebles', on_delete=models.CASCADE)
