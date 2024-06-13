@@ -79,10 +79,10 @@ def solicitudes_arrendador(request):
 def crear_inmueble(request):
     if request.method == 'POST':
         form = InmuebleForm(request.POST, request.FILES)
-        print(form)
         if form.is_valid():
             inmueble = form.save(commit=False)
-            inmueble.propietario = request.user.usuario
+            # Asignar el propietario del inmueble como el usuario actual
+            inmueble.propietario = request.user  # Esto asume que request.user es un objeto Usuario
             inmueble.save()
             return redirect('dashboard') 
     else:
@@ -115,6 +115,7 @@ def eliminar_inmueble(request, id):
 
 @login_required
 def dashboard(request):
+    # Verificar el tipo de usuario y devolver el dashboard correspondiente
     if request.user.tipo_usuario == 'arrendatario':
         solicitudes = SolicitudArriendo.objects.filter(arrendatario=request.user)
         regiones = Region.objects.all()
@@ -135,6 +136,11 @@ def dashboard(request):
         # Obtener los inmuebles del arrendador
         inmuebles = Inmueble.objects.filter(propietario=request.user)
         return render(request, 'dashboard_arrendador.html', {'solicitudes_recibidas': solicitudes_recibidas, 'inmuebles': inmuebles})
+    
+    else:
+        # En caso de que el tipo de usuario no sea ni arrendatario ni arrendador
+        messages.error(request, 'Tipo de usuario no reconocido.')
+        return redirect('home')
 
 
 @login_required

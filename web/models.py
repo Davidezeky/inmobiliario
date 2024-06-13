@@ -19,8 +19,8 @@ class Usuario(AbstractUser):
         ('arrendatario', 'Arrendatario'),
         ('arrendador', 'Arrendador'),
     ]
-    nombres = models.CharField(max_length=50)
-    apellidos = models.CharField(max_length=50)
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
     rut = models.CharField(max_length=10, unique=True)
     direccion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=13)

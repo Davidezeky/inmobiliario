@@ -24,15 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-_3%5-=1ls)nl)4zl3_!j^%l-@4=#3_p_m^-+cb=141gids(%qo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','https://8000-idx-portal-inmobiliario-1716507814956.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev/','portal-inmobiliario.onrender.com']
-# Suggested code may be subject to a license. Learn more: ~LicenseLog:2163619208.
-CSRF_TRUSTED_ORIGINS = ['https://8000-idx-portal-inmobiliario-1716507814956.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev', 'https://portal-inmobiliario.onrender.com']
-
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 AUTH_USER_MODEL = 'web.Usuario'
 
 
@@ -140,7 +138,7 @@ MEDIA_ROOT = 'media'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'web/templates/static'),
+    os.path.join(BASE_DIR, ''),
 )
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
