@@ -3,29 +3,47 @@
 {% block title %}Página de Inicio{% endblock %}
 {% load static %}
 {% block content %}
-<div class="container col-lg-6">
-  <div class="row">
-    {% for inm in inmuebles %}
-      <div class="col-lg-6 col-md-6 mb-4">
-        <div class="card h-100"> 
-          <img src="media/{{ inm.imagen }}" class="card-img-top img-fluid" style="max-width: 300px;" alt="card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{ inm.descripcion }}</h5>
-            <p class="card-text">Precio: ${{ inm.precio }}</p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Habitaciones: {{ inm.cantidad_habitaciones }}</li>
-              <li class="list-group-item">Baños: {{ inm.cantidad_banos }}</li>
-              <li class="list-group-item">Área: {{ inm.m2_construidos }} m2</li>
-              <li class="list-group-item">Estacionamientos: {{ inm.cantidad_estacionamientos }}</li>
-            </ul>
-            <form action="{% url 'detalle' inm.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-primary">Ver Detalles</button>
-            </form>
+<div class="section properties" style='height: 700px; overflow-y: auto; overflow-x: hidden;'>
+  <div class="container">
+    <ul class="properties-filter">
+      <li>
+        <a class="is_active" href="#!" data-filter="*">Todos</a>
+      </li>
+      <li>
+        <a href="#!" data-filter=".adv">casas</a>
+      </li>
+      <li>
+        <a href="#!" data-filter=".str">Departamentos</a>
+      </li>
+      <li>
+        <a href="#!" data-filter=".rac">Parcelas</a>
+      </li>
+    </ul>
+    
+    <div class="row properties-box">
+      {% for inm in inmuebles %}
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 {% if inm.tipo_de_inmueble == 'casa' %} adv {% elif inm.tipo_de_inmueble == 'departamento' %} str {% elif inm.tipo_de_inmueble == 'parcela' %} rac {% endif %}">
+        <div class="item">
+          <a href="property-details.html"><img src="media/{{inm.imagen}}" alt=""></a>
+          <span class="category">{{inm.tipo_de_inmueble}}</span>
+          <h6>${{ inm.precio|floatformat:'-3g' }}</h6>
+          <h4><a href="property-details.html">{{ inm.descripcion }}</a></h4>
+          <ul>
+            <li>habitaciones: <span>{{ inm.cantidad_habitaciones }}</span></li>
+            <li>banos: <span>{{ inm.cantidad_banos }}</span></li>
+            <li>Area : <span>{{inm.m2_construidos}}</span>(m2)</li>
+            <li>Pisos: <span>3</span></li>
+            <li>Estacionamientos: <span>{{inm.cantidad_estacionamientos}}</span></li>
+          </ul>
+          <div class="main-button">
+            <a href="{% url 'detalle' inm.id %}">Ver Detalles</a>
           </div>
         </div>
       </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock %}
+      
+      

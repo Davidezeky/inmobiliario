@@ -115,7 +115,6 @@ def eliminar_inmueble(request, id):
 
 @login_required
 def dashboard(request):
-    # Verificar el tipo de usuario y devolver el dashboard correspondiente
     if request.user.tipo_usuario == 'arrendatario':
         solicitudes = SolicitudArriendo.objects.filter(arrendatario=request.user)
         regiones = Region.objects.all()
@@ -136,11 +135,6 @@ def dashboard(request):
         # Obtener los inmuebles del arrendador
         inmuebles = Inmueble.objects.filter(propietario=request.user)
         return render(request, 'dashboard_arrendador.html', {'solicitudes_recibidas': solicitudes_recibidas, 'inmuebles': inmuebles})
-    
-    else:
-        # En caso de que el tipo de usuario no sea ni arrendatario ni arrendador
-        messages.error(request, 'Tipo de usuario no reconocido.')
-        return redirect('home')
 
 
 @login_required
