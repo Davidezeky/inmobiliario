@@ -61,7 +61,7 @@ ROOT_URLCONF = 'pagina.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,7 +133,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = 'media'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'web/templates/static'),
+    os.path.join(BASE_DIR, 'web/templates/vendor'),
 )
 
 # Default primary key field type
