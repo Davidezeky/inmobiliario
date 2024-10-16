@@ -40,5 +40,35 @@
 
 {% include "includes/scripts.html" %}
 
+<style>
+    .header-area {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .flexslider {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; 
+    }
+    
+    .nav-link {
+      margin-right: 10px;
+    }
+    
+    .sub-header {
+      margin-bottom: 20px; /* Aumentar el margen inferior para más espacio */
+    }
+    
+    .flex-direction-nav {
+      z-index: 20; /* Asegúrate de que los botones de navegación del slider también tengan un z-index adecuado */
+    }
+    </style>
+    
 </body>
 </html>
