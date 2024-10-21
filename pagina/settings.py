@@ -29,8 +29,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
+ALLOWED_HOSTS = ['*','inmobiliario-o5pg.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1','https://inmobiliario-o5pg.onrender.com/']
 AUTH_USER_MODEL = 'web.Usuario'
 
 
