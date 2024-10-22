@@ -3,8 +3,8 @@
         "model": "web.inmueble",
         "pk": 1,
         "fields": {
-            "nombre": "Casa en Valpara�so",
-            "direccion": "Av. Espa�a 456",
+            "nombre": "Casa en Valparaiso",
+            "direccion": "Av. Portugal 456",
             "descripcion": "Casa con vista al mar.",
             "imagen": "banner-01.jpg",
             "precio": "350000",
