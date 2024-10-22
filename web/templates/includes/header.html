@@ -4,18 +4,18 @@
     <div class="row">
       <div class="col-lg-8 col-md-8">
         <ul class="info">
-          <li><i class="fa fa-envelope"></i> info@company.com</li>
-          <li><i class="fa fa-map"></i> Sunny Isles Beach, FL 33160</li>
+          <li><i class="fa fa-envelope"></i> portalinmobiliario@gmail.com</li>
+          <li><i class="fa fa-map"></i> Los mejores inmuebles de chile</li>
         </ul>
       </div>
       <div class="col-lg-4 col-md-4">
         <ul class="social-links">
-          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          <li><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
           {% if user.is_authenticated %}
-            <p class="d-inline">bienvenido {{ user.username }}</p>        
+            <p class="d-inline">Bienvenido {{ user.username }}</p>        
             <form action="{% url 'logout' %}" method="post">
               {% csrf_token %}
               <button data-mdb-ripple-init type="submit" class="btn btn-outline">
@@ -54,8 +54,8 @@
                     {% endif %}
                     
                     {% comment %} 
-                    <li><a href="property-details.html">Property Details</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="property-details.html">Detalle de Propiedad</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
                     <li><a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
                     {% endcomment %}
                   </ul>

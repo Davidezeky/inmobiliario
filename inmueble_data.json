@@ -5,7 +5,7 @@
         "fields": {
             "nombre": "Casa en Valpara�so",
             "direccion": "Av. Espa�a 456",
-            "descripcion": "Casa con vista al mar.",
+            "descripcion": "Casa hermosa con vista al mar.",
             "imagen": "banner-01.jpg",
             "precio": "350000",
             "comuna": 1,
@@ -104,7 +104,7 @@
         "pk": 9,
         "fields": {
             "nombre": "casa 4",
-            "direccion": "Ñuñoa",
+            "direccion": "�u�oa",
             "descripcion": "Casa",
             "imagen": "property-02.jpg",
             "precio": "1500000",
@@ -144,7 +144,7 @@
         "pk": 11,
         "fields": {
             "nombre": "parcela 2",
-            "direccion": "Curacaví",
+            "direccion": "Curacav�",
             "descripcion": "Parcela",
             "imagen": "property-04.jpg",
             "precio": "3000000",

@@ -1,31 +1,6 @@
 [
     {
         "model": "web.usuario",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$600000$sNR2ZN3NFkhrXQRtsBz163$JxaatpSW9+WmE1GQbSwWk2HsUOVzxS9L4+gWKHFAljY=",
-            "last_login": "2024-06-10T07:40:56.223Z",
-            "is_superuser": true,
-            "username": "admin",
-            "first_name": "",
-            "last_name": "",
-            "email": "",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2024-06-06T06:51:55.479Z",
-            "nombres": "",
-            "apellidos": "",
-            "rut": "",
-            "direccion": "",
-            "telefono": "",
-            "tipo_usuario": "",
-            "correo_electronico": "email@correo.cl",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "web.usuario",
         "pk": 2,
         "fields": {
             "password": "1234",
@@ -45,9 +20,7 @@
             "telefono": "133",
             "tipo_usuario": "arrendador",
             "correo_electronico": "nahuel@correo.cl",
-            "groups": [
-                1
-            ],
+            "groups": [],
             "user_permissions": []
         }
     },
@@ -72,9 +45,7 @@
             "telefono": "133",
             "tipo_usuario": "arrendador",
             "correo_electronico": "Juancito@correo.cl",
-            "groups": [
-                1
-            ],
+            "groups": [],
             "user_permissions": []
         }
     },

@@ -1,39 +1,84 @@
 {% extends 'base.html' %}
 
-{% block title %}Página de Inicio{% endblock %}
+{% block title %}Portal Inmobiliario{% endblock %}
 {% load static %}
+
 {% block content %}
-<div class="section properties" style='height: 700px; overflow-y: auto; overflow-x: hidden;'>
+<style>
+.item {
+    background: #fff; /* Color de fondo para las tarjetas */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    height: auto; /* Permitir que la altura se ajuste automáticamente */
+    min-height: 350px; /* Asegura que cada tarjeta tenga una altura mínima */
+    display: flex; /* Permite utilizar flexbox */
+    flex-direction: column; /* Coloca el contenido en columna */
+}
+
+.main-button {
+    margin-top: auto; /* Empuja el botón hacia abajo */
+    margin-bottom: 15px; /* Espacio debajo del botón */
+}
+.properties-box {
+    display: flex; 
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en múltiples filas */
+    margin: -15px; /* Ajusta el margen negativo para los elementos hijos */
+}
+
+.properties-items {
+    padding: 15px; /* Espaciado interno */
+    flex: 0 0 calc(25% - 30px); /* Cuatro tarjetas por fila en pantallas grandes */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    margin-bottom: 30px; /* Espacio entre las tarjetas */
+}
+.section.properties {
+    margin-top: 0; /* Elimina el margen superior si existe */
+    padding-top: 0; /* Elimina el relleno superior si existe */
+}
+
+.container {
+    padding-top: 50; /* Asegúrate de que el contenedor no tenga relleno superior */
+}
+
+.properties-filter {
+    margin-bottom: 20px; /* Espacio entre el filtro y las tarjetas */
+}
+
+.properties-box {
+    display: flex; 
+    flex-wrap: wrap; 
+    margin: -15px; /* Ajusta el margen negativo para los elementos hijos */
+    padding-bottom: 30px; /* Espacio entre las tarjetas y el final del contenedor */
+}
+
+ 
+</style>
+
+<div class="section properties" style="">
   <div class="container">
     <ul class="properties-filter">
-      <li>
-        <a class="is_active" href="{% url 'home' %}" data-filter="*">Todos</a>
-      </li>
-      <li>
-        <a href="{% url 'home' %}?tipo=casa" data-filter=".adv">Casas</a>
-      </li>
-      <li>
-        <a href="{% url 'home' %}?tipo=departamento" data-filter=".str">Departamentos</a>
-      </li>
-      <li>
-        <a href="{% url 'home' %}?tipo=parcela" data-filter=".rac">Parcelas</a>
-      </li>
+      <li><a class="is_active" href="{% url 'home' %}" data-filter="*">Todos</a></li>
+      <li><a href="{% url 'home' %}?tipo=casa" data-filter=".adv">Casas</a></li>
+      <li><a href="{% url 'home' %}?tipo=departamento" data-filter=".str">Departamentos</a></li>
+      <li><a href="{% url 'home' %}?tipo=parcela" data-filter=".rac">Parcelas</a></li>
     </ul>
     
     <div class="row properties-box">
       {% for inm in inmuebles %}
       {% if not request.GET.tipo or inm.tipo_de_inmueble == request.GET.tipo %}
-      <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 {% if inm.tipo_de_inmueble == 'casa' %} adv {% elif inm.tipo_de_inmueble == 'departamento' %} str {% elif inm.tipo_de_inmueble == 'parcela' %} rac {% endif %}">
+      <div class="col-lg-3 col-md-4 mb-30 properties-items {% if inm.tipo_de_inmueble == 'casa' %} adv {% elif inm.tipo_de_inmueble == 'departamento' %} str {% elif inm.tipo_de_inmueble == 'parcela' %} rac {% endif %}">
         <div class="item">
-          <a href="{% url 'detalle' inm.id %}"><img src="{{ inm.imagen.url }}" alt=""></a>
+          <a href="{% url 'detalle' inm.id %}">
+            <img src="{{ inm.imagen.url }}" alt="Imagen de {{ inm.descripcion }}">
+          </a>
           <span class="category">{{ inm.tipo_de_inmueble }}</span>
           <h6>${{ inm.precio|floatformat:'-3g' }}</h6>
           <h4><a href="{% url 'detalle' inm.id %}">{{ inm.descripcion }}</a></h4>
           <ul>
             <li>Habitaciones: <span>{{ inm.cantidad_habitaciones }}</span></li>
             <li>Baños: <span>{{ inm.cantidad_banos }}</span></li>
-            <li>Área: <span>{{ inm.m2_construidos }}</span> (m2)</li>
-            <li>Pisos: <span>3</span></li>
+            <li>Área: <span>{{ inm.m2_construidos }}</span> m²</li>
+            <li>Pisos: <span>{{ inm.cantidad_pisos }}</span></li>
             <li>Estacionamientos: <span>{{ inm.cantidad_estacionamientos }}</span></li>
           </ul>
           <div class="main-button">
@@ -43,7 +88,7 @@
       </div>
       {% endif %}
       {% endfor %}
-    </div>
+    </div>    
   </div>
 </div>
 {% endblock %}

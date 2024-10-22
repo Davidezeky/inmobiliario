@@ -1,68 +1,65 @@
 {% extends 'base.html' %}
 
-
 {% block title %}Página de Inicio{% endblock %}
 {% load static %}
+
 {% block content %}
 <div class="page-heading header-text">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <span class="breadcrumb"><a href="{% url 'home' %}">Home</a> / Single Property</span>
-          <h3>{{inmueble.nombre}}</h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="{% url 'home' %}">Home</a> / Propiedad unica</span>
+                <h3>{{ inmueble.nombre }}</h3>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <div class="single-property section">
+<div class="single-property section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="main-image">
-            <img src="/media/{{inmueble.imagen}}">
-          </div>
-          <div class="main-content">
-            <span class="category">{{inmueble.tipo_de_inmueble}}</span>
-            <h4>{{inmueble.direccion}}</h4>
-            <p>
-              {{inmueble.descripcion}}
-            </p>
-          </div> 
-         
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="main-image">
+                    <img src="{{ inmueble.imagen.url }}" alt="{{ inmueble.nombre }}" class="img-fluid">
+                </div>
+                <div class="main-content">
+                    <span class="category">{{ inmueble.tipo_de_inmueble }}</span>
+                    <h4>{{ inmueble.direccion }}</h4>
+                    <p>
+                        {{ inmueble.descripcion }}
+                    </p>
+                </div> 
+            </div>
+            <div class="col-lg-4">
+                <div class="info-table">
+                    <ul>
+                        <li>
+                            <img src="{% static 'assets/images/info-icon-01.png' %}" alt="" style="max-width: 52px;">
+                            <h4>{{ inmueble.m2_construidos }} m²<br><span>Metros construidos</span></h4>
+                        </li>
+                        <li>
+                            <img src="{% static 'assets/images/info-icon-02.png' %}" alt="" style="max-width: 52px;">
+                            <h4>Contrato<br><span>Disponible</span></h4>
+                        </li>
+                        <li>
+                            <img src="{% static 'assets/images/info-icon-03.png' %}" alt="" style="max-width: 52px;">
+                            <h4>Pago<br><span>En Proceso</span></h4>
+                        </li>
+                        <li>
+                            <img src="{% static 'assets/images/info-icon-04.png' %}" alt="" style="max-width: 52px;">
+                            <h4>Seguridad<br><span>24/7 Bajo Control</span></h4>
+                        </li>
+                    </ul>
+                    {% if user.tipo_usuario == 'arrendatario' %}
+                        <a href="{% url 'generar_solicitud_arriendo' inmueble.id %}" class="btn btn-primary">Generar Solicitud de Arriendo</a>
+                    {% endif %}
+                    {% if user.tipo_usuario == 'arrendador' %}
+                        <a href="{% url 'editar_inmueble' inmueble.id %}" class="btn btn-warning" onclick="return confirm('¿Editar?');">Editar Inmueble</a>
+                        <a href="{% url 'eliminar_inmueble' inmueble.id %}" class="btn btn-danger" onclick="return confirm('¿Quieres eliminar?');">Eliminar Inmueble</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4">
-          <div class="info-table">
-            <ul>
-              <li>
-                <img src="assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
-                <h4>{{inmueble.m2_construidos}} m2<br><span>Metros construidos</span></h4>
-              </li>
-              <li>
-                <img src="assets/images/info-icon-02.png" alt="" style="max-width: 52px;">
-                <h4>Contract<br><span>Disponible</span></h4>
-              </li>
-              <li>
-                <img src="assets/images/info-icon-03.png" alt="" style="max-width: 52px;">
-                <h4>Payment<br><span>Payment Process</span></h4>
-              </li>
-              <li>
-                <img src="assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
-                <h4>Safety<br><span>24/7 Under Control</span></h4>
-              </li>
-            </ul>
-            {% if user.tipo_usuario == 'arrendatario' %}
-              <a href="{% url 'generar_solicitud_arriendo' inmueble.id %}">Generar Solicitud de Arriendo</a>
-              {% endif %}
-              {% if user.tipo_usuario == 'arrendador' %}
-              <a href="{% url 'editar_inmueble' inmueble.id %}" onclick="return confirm('¿editar?');">editar Inmueble</a>
-              <a href="{% url 'eliminar_inmueble' inmueble.id %}" onclick="return confirm('¿quieres eliminar?');">eliminar Inmueble</a>
-              {% endif %}
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  
-
-  {% endblock %}
+</div>
+{% endblock %}
