@@ -6,55 +6,49 @@
 {% block content %}
 <style>
 .item {
-    background: #fff; /* Color de fondo para las tarjetas */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
-    height: auto; /* Permitir que la altura se ajuste automáticamente */
-    min-height: 350px; /* Asegura que cada tarjeta tenga una altura mínima */
-    display: flex; /* Permite utilizar flexbox */
-    flex-direction: column; /* Coloca el contenido en columna */
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-button {
-    margin-top: auto; /* Empuja el botón hacia abajo */
-    margin-bottom: 15px; /* Espacio debajo del botón */
+    margin-top: auto;
+    margin-bottom: 15px;
 }
+
 .properties-box {
-    display: flex; 
-    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en múltiples filas */
-    margin: -15px; /* Ajusta el margen negativo para los elementos hijos */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -15px;
 }
 
 .properties-items {
-    padding: 15px; /* Espaciado interno */
-    flex: 0 0 calc(25% - 30px); /* Cuatro tarjetas por fila en pantallas grandes */
-    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
-    margin-bottom: 30px; /* Espacio entre las tarjetas */
+    padding: 15px;
+    flex: 0 0 calc(25% - 30px);
+    box-sizing: border-box;
 }
+
 .section.properties {
-    margin-top: 0; /* Elimina el margen superior si existe */
-    padding-top: 0; /* Elimina el relleno superior si existe */
+    height: auto;
+    overflow: visible;
+    padding-bottom: 50px;
 }
 
 .container {
-    padding-top: 50; /* Asegúrate de que el contenedor no tenga relleno superior */
+    padding-top: 0;
 }
 
 .properties-filter {
-    margin-bottom: 20px; /* Espacio entre el filtro y las tarjetas */
+    margin-bottom: 20px;
+    margin-top: auto;
 }
-
-.properties-box {
-    display: flex; 
-    flex-wrap: wrap; 
-    margin: -15px; /* Ajusta el margen negativo para los elementos hijos */
-    padding-bottom: 30px; /* Espacio entre las tarjetas y el final del contenedor */
-}
-
- 
 </style>
 
-<div class="section properties" style="">
+<div class="section properties">
   <div class="container">
     <ul class="properties-filter">
       <li><a class="is_active" href="{% url 'home' %}" data-filter="*">Todos</a></li>
@@ -66,7 +60,7 @@
     <div class="row properties-box">
       {% for inm in inmuebles %}
       {% if not request.GET.tipo or inm.tipo_de_inmueble == request.GET.tipo %}
-      <div class="col-lg-3 col-md-4 mb-30 properties-items {% if inm.tipo_de_inmueble == 'casa' %} adv {% elif inm.tipo_de_inmueble == 'departamento' %} str {% elif inm.tipo_de_inmueble == 'parcela' %} rac {% endif %}">
+      <div class="col-lg-3 col-md-4 align-self-center mb-30 properties-items col-md-6 {% if inm.tipo_de_inmueble == 'casa' %} adv {% elif inm.tipo_de_inmueble == 'departamento' %} str {% elif inm.tipo_de_inmueble == 'parcela' %} rac {% endif %}">
         <div class="item">
           <a href="{% url 'detalle' inm.id %}">
             <img src="{{ inm.imagen.url }}" alt="Imagen de {{ inm.descripcion }}">

@@ -5,28 +5,24 @@
       <div class="col-lg-8 col-md-8">
         <ul class="info">
           <li><i class="fa fa-envelope"></i> portalinmobiliario@gmail.com</li>
-          <li><i class="fa fa-map"></i> Los mejores inmuebles de chile</li>
+          <li><i class="fa fa-map"></i> Los mejores inmuebles de Chile</li>
         </ul>
       </div>
-      <div class="col-lg-4 col-md-4">
-        <ul class="social-links">
-          <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-          <li><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-          {% if user.is_authenticated %}
-            <p class="d-inline">Bienvenido {{ user.username }}</p>        
-            <form action="{% url 'logout' %}" method="post">
-              {% csrf_token %}
-              <button data-mdb-ripple-init type="submit" class="btn btn-outline">
-                cerrar sesión
-              </button>
-            </form>
-          {% else %}
-            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>                        
-            <a class="nav-link" href="{% url 'registro_usuario' %}">Registro</a>
-          {% endif %}
-        </ul>
+      <div class="col-lg-4 col-md-4 text-right">
+        {% if user.is_authenticated %}
+          <span class="d-inline">Bienvenido {{ user.username }}</span>
+          <form action="{% url 'logout' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button data-mdb-ripple-init type="submit" class="btn btn-outline">
+              Cerrar sesión
+            </button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="nav-link d-inline">
+            <i class="fa fa-user-circle" style="font-size: 18px; margin-right: 5px;"></i> Iniciar sesión
+          </a>
+          <a href="{% url 'registro_usuario' %}" class="nav-link d-inline">Registro</a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -52,13 +48,7 @@
                     {% if user.is_authenticated and user.tipo_usuario == 'arrendador' %}
                       <li><a class="nav-link d-inline" href="{% url 'alta_inmueble' %}">Crear inmueble</a></li>
                     {% endif %}
-                    
-                    {% comment %} 
-                    <li><a href="property-details.html">Detalle de Propiedad</a></li>
-                    <li><a href="contact.html">Contacto</a></li>
-                    <li><a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
-                    {% endcomment %}
-                  </ul>
+                  </ul>                  
                   <a class='menu-trigger'>
                       <span>Menu</span>
                   </a>
@@ -68,8 +58,3 @@
       </div>
   </div>
 </header>
-
-
-
-
-<!-- ***** Header Area End ***** -->

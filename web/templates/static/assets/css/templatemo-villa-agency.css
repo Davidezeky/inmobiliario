@@ -465,7 +465,7 @@ Header Style
 
 .header-area .main-nav .nav li:last-child a {
   background-color: #1e1e1e;
-  color: #fff;
+  color: #000000;
   font-size: 14px;
   font-weight: 400;
   text-transform: none;
@@ -1742,7 +1742,7 @@ body {
     padding-right: 3px;
   }
   .header-area .main-nav .nav li:last-child a {
-    padding-right: 15px;
+    padding-right: 0px;
   }
   .main-banner .item h2 {
     width: 100%;
